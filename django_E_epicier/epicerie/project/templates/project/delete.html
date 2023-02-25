@@ -1,0 +1,38 @@
+{% extends 'main.html' %}
+{% block content %}
+{% include 'navbar-pages.html' %}
+{% load static %}
+{% if user.is_authenticated%}
+{% if perms.project.change_epicerie %}
+<style>
+
+   .container2{
+     margin: 0 auto;
+     padding-top: 15px;
+    width: 70%;
+   }
+   .form-control {
+    margin-bottom: 10px;
+   }
+   .form-group{
+    width: 80%;
+    margin: 0 auto;
+
+  }
+ 
+   </style>
+<div class="container container2">
+<form method="POST" action="">
+    {% csrf_token %}
+    <p>Are you sure you want to delete {{obj}} ?</p>
+    <a href="{% url 'home' %}">Annuler <i class="far fa-times-circle"></i></a>
+    <center><input type="submit" value="Confirmer" class="btn btn-outline-success"  > </center>
+
+</form>
+</div>
+
+{% else %}
+<center><u><b>you have to login !</b></u></center> 
+{% endif %}
+{% endif %}
+{% endblock content %}

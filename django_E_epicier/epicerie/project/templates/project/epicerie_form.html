@@ -1,0 +1,56 @@
+{% extends 'main.html' %}
+{% block content %}
+{% include 'navbar-pages.html' %}
+{% load static %}
+{% if user.is_authenticated%}
+{% if perms.project.change_epicerie %}              
+<style>
+    body{
+     background-size: cover;
+     background-image:url("{% static 'assets/img/shoppinggirl.jpg' %}");
+     backdrop-filter: blur(10px);
+     height: auto;
+     }
+   .container2{
+     color: white;
+     margin: 0 auto;
+     padding-top: 15px;
+    width: 50%;
+     background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 80%, #000 100%);
+   }
+   .form-control {
+    margin-bottom: 10px;
+   }
+   .form-group{
+    width: 80%;
+    margin: 0 auto;
+
+  }
+</style>
+
+<div class="container container2">
+    <h1 class="text-center">Epicerie</h1>
+    <br>
+<br color="red" >
+    <form method="POST" action="">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="{{ form.Nom_Epicerie.id_for_label }}" class="form-label">Nom_Epicerie:</label>
+            {{ form.Nom_Epicerie }}
+        </div>
+        <div class="form-group">
+            <label for="{{ form.Adresse_Epicerie.id_for_label }}" class="form-label">Adresse:</label>
+            {{ form.Adresse_Epicerie }}
+        </div>
+        <div class="form-group">
+            <label for="{{ form.Tel_Epicerie.id_for_label }}" class="form-label">Téléphone:</label>
+            {{ form.Tel_Epicerie }}
+        </div>
+        <center><input type="submit" value="Enregistrer" class="btn btn-outline-success" style="width:50%" ></center>
+    </form>
+</div>
+{% else %}
+<center><u><b>Tu n'as pas l'accès !</b></u></center> 
+{% endif %}
+{% endif %}
+{% endblock content %}

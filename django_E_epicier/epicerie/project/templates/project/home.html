@@ -1,0 +1,130 @@
+
+{% extends 'main.html' %}
+{% block content %}
+{% include 'navbar.html' %}
+{% load static %}
+
+    <!-- Masthead-->
+    <header class="masthead">
+        <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
+            <div class="d-flex justify-content-center">
+                <div class="text-center">
+                    <h1 class="mx-auto my-0 text-uppercase">E-Epicier</h1>
+                    {% if user.is_authenticated%}
+                    <h2 class="text-white-50 mx-auto mt-2 mb-5">Welcome {{user.get_full_name}} !</h2>
+                    {% else %}
+                    <h2 class="text-white-50 mx-auto mt-2 mb-5">A free, responsive, one page Bootstrap theme created by Start Bootstrap.</h2>
+                    <a class="btn btn-primary" href="{% url 'epicier_register' %}">Get Started</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </header>
+    {% if not user.is_authenticated %}
+    <!-- About-->
+    <section class="about-section text-center" id="about">
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-lg-8">
+                    <h2 class="text-white mb-4">Projet E-Epicier</h2>
+                    <p class="text-white-50">
+                        <a href='https://drive.google.com/file/d/1-yofmwvI7s4T5GQMLM_ljQNLq8yLGItC/view?usp=sharing'>Pour voir l'énoncé du projet cliquez dessus.</a><br><br>
+                        Continuer de scroller pour savoir plus !
+                    </p>
+                </div>
+            </div>
+            <div style="filter: blur(5px); opacity: 0.3;height: 400px;">
+                <img class="img-fluid" src="{% static 'assets/img/trolleys.jpg' %}" style="height: 400px;width: 1200px;">
+            </div>
+        </div>
+    </section>
+    {% endif %}
+    <!-- Projects-->
+    <section class="projects-section bg-light" id="projects">
+        <div class="container px-4 px-lg-5">
+            <!-- Featured Project Row-->
+            <div class="row gx-0 mb-4 mb-lg-5 align-items-center">
+                <div class="col-xl-8 col-lg-7"><img class="img-fluid mb-3 mb-lg-0" src="{% static 'assets/img/trolley.jpg' %}"  /></div>
+                <div class="col-xl-4 col-lg-5">
+                    <div class="featured-text text-center text-lg-left">
+                        <h4>Description du projet</h4>
+                        <p class="text-black-50 mb-0">Ce projet est dédié spécifiquement aux épiciers pour leur aider 
+                            à gérer leurs crédits envers leurs clients et digitaliser ces opérations , 
+                            en maintenant une traçabilité du paiement du crédit de chaque client .</p>
+                    </div>
+                </div>
+            </div>
+            <div class="featured-text text-center text-lg-left">
+                <h4>Comment utiliser notre webapp</h4>
+                <br>
+            </div>
+            
+            <!-- Project One Row-->
+            <div class="row gx-0 mb-5 mb-lg-0 justify-content-center">
+                <div class="col-lg-6"><img class="img-fluid" src="{% static 'assets/img/vegatablerow.jpg' %}" alt="..." /></div>
+                <div class="col-lg-6">
+                    <div class="bg-black text-center h-100 project">
+                        <div class="d-flex h-100">
+                            <div class="project-text w-100 my-auto text-center text-lg-left">
+                                <h4 class="text-white">1.Créer votre épicerie</h4>
+                                <p class="mb-0 text-white-50">la première étape c'est de créer votre épicerie car c'est la base de toutes les autres fonctionalités (client,produit et crédits).</p>
+                                <hr class="d-none d-lg-block mb-0 ms-0" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project Two Row-->
+            <div class="row gx-0 justify-content-center">
+                <div class="col-lg-6"><img class="img-fluid" src="{% static 'assets/img/bluetrolley.jpg' %}" alt="..." /></div>
+                <div class="col-lg-6 order-lg-first">
+                    <div class="bg-black text-center h-100 project">
+                        <div class="d-flex h-100">
+                            <div class="project-text w-100 my-auto text-center text-lg-right">
+                                <h4 class="text-white">2.Créer votre client </h4>
+                                <p class="mb-0 text-white-50">Créer votre client et attribuer lui l'épicerie. Vous n'êtes pas obligé de remplir tous les champs juste le nom d'utilisateur , le mot de passe et l'épicerie bien sûr.
+                                    le client peut modifier après ses informations et son mot de passe.
+                                </p>
+                                <hr class="d-none d-lg-block mb-0 me-0" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Project Third Row-->
+            <div class="row gx-0 mb-5 mb-lg-0 justify-content-center">
+                <div class="col-lg-6"><img class="img-fluid" src="{% static 'assets/img/fridges.jpg' %}" alt="..." /></div>
+                <div class="col-lg-6">
+                    <div class="bg-black text-center h-100 project">
+                        <div class="d-flex h-100">
+                            <div class="project-text w-100 my-auto text-center text-lg-left">
+                                <h4 class="text-white">3.Ajouter les produits de votre épicerie</h4>
+                                <p class="mb-0 text-white-50">Il faut ajouter bien évidemment les produits pourque vous puissiez attribuer les crédits avec le détail aux clients.</p>
+                                <hr class="d-none d-lg-block mb-0 ms-0" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Project Fourth Row-->
+            <div class="row gx-0 justify-content-center">
+                <div class="col-lg-6"><img class="img-fluid" src="{% static 'assets/img/darksection.jpg' %}" alt="..." /></div>
+                <div class="col-lg-6 order-lg-first">
+                    <div class="bg-black text-center h-100 project">
+                        <div class="d-flex h-100">
+                            <div class="project-text w-100 my-auto text-center text-lg-right">
+                                <h4 class="text-white">4.Créer votre crédit </h4>
+                                <p class="mb-0 text-white-50">Créer votre crédit et l'attribuer le au client que vous souhaitez et puis ajouter le détails pour savoir ce qu'il a pris  comme produits dans son crédit.</p>
+                                <hr class="d-none d-lg-block mb-0 me-0" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    
+    
+{% endblock content %}

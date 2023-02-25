@@ -1,0 +1,50 @@
+{% extends 'main.html' %}
+{% block content %}
+{% include 'navbar-pages.html' %}
+{% load static %}
+{% if user.is_authenticated%}
+<h2 class="text-center">Mes Crédits !</h2>
+<table class="table" width="600" border="2">
+    <thead class="table-dark">
+    <tr>
+        <th class="text-center">ID</th>
+        <th class="text-center">Date d'opération</th>
+        <th class="text-center">Total du Credit</th>
+        <th class="text-center">Date d'écheance</th>
+        <th class="text-center">Etat</th>
+        <th class="text-center">Avance</th>
+        <th class="text-center">Details</th>
+        {% if perms.project.change_epicerie %}
+        <th class="text-center">Client</th>
+        <th class="text-center">Ajouter Details</th>
+        <th class="text-center">Modifier</th>
+        <th class="text-center">Supprimer</th>
+        {% endif %}
+
+    </tr>
+    </thead>
+
+    {% for element in credit %}
+    <tr>        
+        <td class="text-center">{{ element.id }}</td>
+      <td class="text-center">{{ element.Date_d_operation }}</td>
+      <td class="text-center">{{ element.Total_Credit }}</td>
+      <td class="text-center">{{ element.Date_d_echeance }}</td>
+      <td class="text-center">{% if element.Etat == 0 %}Non Payé{% else %}Payé{% endif %}</td>
+      <td class="text-center">{{ element.Avance }}</td>
+        <td class="text-center"><a href="{% url 'credits_detail_display' element.id %}"><i class="fa-solid fa-ellipsis-vertical"></i></a></td>
+        {% if perms.project.change_epicerie %}
+        <td>{{element.client.user.username}}</td>
+        <td class="text-center"><a href="{% url 'createcredits_detail' element.id %}"><i class="fa-solid fa-plus"></i></a></td>
+        <td class="text-center"><a href="{% url 'update-credits' element.id %}"><i class="fa-solid fa-pen"></i></a></td>
+        <td class="text-center"><a href="{% url 'delete-credits' element.id %}"><i class="fa-solid fa-trash"></i></a></td>
+        {% endif %}
+    </tr>
+    {% endfor %}
+    
+    
+</table>
+{% else %}
+<center><u><b>you have to login !</b></u></center> 
+{% endif %}
+{% endblock content %}

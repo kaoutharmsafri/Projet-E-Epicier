@@ -1,0 +1,50 @@
+{% extends 'main.html' %}
+{% block content %}
+{% include 'navbar-pages.html' %}
+{% load static %}
+{% if user.is_authenticated%}
+{% if perms.project.change_epicerie %}              
+<h2 class="text-center">Mes Produits !</h2>
+{% else %}
+<h2 class="text-center">Les Produits de l'épicerie !</h2>
+{% endif %}
+<table class="table" width="600" border="2">
+    <thead class="table-dark">
+    <tr>
+        <th class="text-center">ID</th>
+        <th class="text-center">Description</th>
+        <th class="text-center">Prix</th>
+        <th class="text-center">Disponibilité</th>
+        {% if perms.project.change_epicerie %}
+        <th class="text-center">Epicerie</th>
+        <th class="text-center">Modifier</th>
+        <th class="text-center">Supprimer</th>
+        {% endif %}
+
+    </tr>
+</thead>
+
+    {% for element in produit %}
+    <tr>        
+        <td class="text-center">{{element.id}}</td>
+        <td class="text-center">{{element.Description_Produit}}</td>
+        <td class="text-center">{{element.Prix_Produit}}</td>
+        <td class="text-center">{% if element.Disponibilité == 0 %}
+            Non Disponible
+            {% else %}
+            Disponible
+            {% endif %}</td>
+            {% if perms.project.change_epicerie %}
+        <td class="text-center">{{element.epicerie.Nom_Epicerie}}</td>
+        <td class="text-center"><a href="{% url 'update-produits' element.id %}"><i class="fa-solid fa-pen"></i></a></td>
+        <td class="text-center"><a href="{% url 'delete-produits' element.id %}"><i class="fa-solid fa-trash"></i></a></td>
+        {% endif %}
+    </tr>
+    {% endfor %}
+    
+    
+</table>
+{% else %}
+<center><u><b>Tu n'as pas l'accès !</b></u></center> 
+{% endif %}
+{% endblock content %}

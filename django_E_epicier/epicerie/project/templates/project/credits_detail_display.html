@@ -1,0 +1,33 @@
+{% extends 'main.html' %}
+{% block content %}
+{% include 'navbar-pages.html' %}
+{% load static %}
+{% if user.is_authenticated%}
+<h2 class="text-center">Detail du crédit</h2>
+<table class="table" width="600" border="2">
+    <thead class="table-dark">
+    <tr>
+        <th>ID du Credit</th>
+        <th>Description du Produit</th>
+        <th>Quantité</th>
+        <th>Prix</th>
+        <th>Total</th>
+        
+
+    </tr>
+    </thead>
+    {% for element in credit_detail %}
+    <tr>        
+        <td>{{element.credit.id}}</td>
+        <td>{{element.produit.Description_Produit}}</td>
+        <td>{{element.Quantite}}</td>
+        <td>{{element.produit.Prix_Produit}}</td>
+        <td>{{element.Total}}</td>
+    </tr>
+    {% endfor %}
+    
+</table>
+{% else %}
+<center><u><b>you have to login !</b></u></center> 
+{% endif %}
+{% endblock content %}
