@@ -1,0 +1,69 @@
+{% extends 'main.html' %}
+{% block content %}
+{% include 'navbar-pages.html' %}
+{% load static %}
+<style>
+  body{
+    background-size: cover;
+    background-image:url("{% static 'assets/img/vegetables.jpg' %}");
+    backdrop-filter: blur(10px);
+    height: auto;
+    }
+  .container2{
+    color: white;
+     margin: 0 auto;
+     padding-top: 15px;
+    width: 70%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 80%, #000 100%);
+  }
+  .form-group{
+    width: 95%;
+    margin: 0 auto;
+
+  }
+</style>
+  <div class="container container2">
+    <h2 class="text-center">Formulaire d'inscription de l'Epicier </h2>
+    <br>
+    <form action="{% url 'epicier_register' %}" method="POST" novalidate>
+    {% csrf_token %}
+    <div class="row">
+      <div class="col">
+        <div class="form-group">
+          <label class="col-form-label" for="id_username">Nom d'utilisateur:</label>
+          <input class="form-control" type="text" name="username" maxlength="150" autocapitalize="none" autocomplete="username" autofocus required id="id_username">
+        </div>
+        <div class="form-group">
+          <label class="col-form-label" for="id_password1">Mot de passe:</label>
+          <input class="form-control" type="password" name="password1" autocomplete="new-password" required id="id_password1">   
+          <span class="helptext"><ul><li>Your password must contain at least 8 characters.</li><li>Your password can’t be entirely numeric.</li></ul></span>
+        </div>  
+        <div class="form-group">
+          <label class="col-form-label" for="id_password2">Confirmation du Mot de passe:</label>
+          <input class="form-control" type="password" name="password2" autocomplete="new-password" required id="id_password2">
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-group">
+          <label  class="col-form-label" for="id_first_name" >Prénom:</label>
+          <input class="form-control" type="text" name="first_name" required id="id_first_name">
+        </div>
+        <div class="form-group">
+          <label  class="col-form-label" for="id_last_name">Nom:</label>
+          <input class="form-control" type="text" name="last_name" required id="id_last_name"> 
+        </div>
+        <div class="form-group">
+          <label  class="col-form-label" for="id_phone_number">Téléphone:</label>
+          <input maxlength="10" class="form-control" type="text" name="phone_number" required id="id_phone_number">
+        </div>
+        <div class="form-group">
+          <label  class="col-form-label" for="id_adress">Addresse:</label>
+          <input class="form-control" type="text" name="adress" required id="id_adress"> 
+        </div>
+      </div>
+    </div>
+    <br>
+  <center><input type="submit" value="S'inscrire" class="btn btn-outline-success" style="width:50%" ></center>
+</div>
+
+{% endblock content %}

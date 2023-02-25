@@ -1,0 +1,43 @@
+{% extends 'main.html' %}
+{% block content %}
+{% include 'navbar-pages.html' %}
+{% load static %}
+<style>
+   body{
+    background-size: cover;
+    background-image:url("{% static 'assets/img/vegetables.jpg' %}");
+    backdrop-filter: blur(10px);
+    height: auto;
+    }
+  .container2{
+    color: white;
+    margin: 0 auto;
+    padding-top: 15px;
+    width: 50%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 80%, #000 100%);
+  }
+  .form-group{
+    width: 80%;
+    margin: 0 auto;
+
+  }
+   
+  </style>
+</div>
+<div class="container container2">
+    <h2 class="text-center">Login</h2> 
+    <form action="{% url 'login_user' %}" method="POST" novalidate>
+        {% csrf_token %}
+              <div class="form-group">
+                <label class="col-form-label" for="id_username">Nom d'utilisateur:</label>
+                <input class="form-control" type="text" name="username" autofocus autocapitalize="none" autocomplete="username" maxlength="150" required id="id_username">
+              </div>
+              <div class="form-group">
+                <label class="col-form-label" for="id_password">Mot de passe:</label>
+                <input class="form-control" type="password" name="password" autocomplete="current-password" required id="id_password">
+              </div>  
+        <br>
+        <center><input type="submit" value="Se connecter" class="btn btn-outline-success" style="width:50%" ></center>
+    </form>
+</div>
+{% endblock content %}

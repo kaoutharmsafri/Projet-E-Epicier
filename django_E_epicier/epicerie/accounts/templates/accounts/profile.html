@@ -1,0 +1,52 @@
+{% extends 'main.html' %}
+{% block content %}
+{% include 'navbar-profile.html' %}
+{% load static %}
+{% if user.is_authenticated%}
+<style>
+    body{
+     background-size: cover;
+     background-image:url("{% static 'assets/img/vegetablesdisplay2.jpg' %}");
+     backdrop-filter: blur(10px);
+     height: auto;
+     }
+   .container2{
+     color: white;
+     margin: 0 auto;
+     padding-top: 15px;
+      width: 50%;
+     background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 80%, #000 100%);
+   }
+   .form-control {
+    margin-bottom: 10px;
+   }
+   .form-group{
+    width: 80%;
+    margin: 0 auto;
+
+  }
+ 
+   </style>
+<div class="container container2">
+    <div class="row my-3 p-3">
+        <h1>{{ user.username }}</h1>
+        <p>First Name: {{ user.first_name }}</p>
+        <p>Last Name: {{ user.last_name }}</p></h1>
+        {% if user.is_Client %}
+        <p>Téléphone: {{ client.phone_number }}</p></h1>
+        <p>Adresse: {{ client.adress }}</p></h1>
+        {% elif user.is_Epicier %}
+        <p>Téléphone: {{ epicier.phone_number }}</p></h1>
+        <p>Adresse: {{ epicier.adress }}</p></h1>
+        {% endif %}
+
+        <a href="{% url 'password_update' %}">Modifier le Mot de Passe </a>
+        {% if user.is_Client %}
+        <a href="{% url 'update-client' user.id %}"><center><input type="submit" value="Modifier" class="btn btn-outline-success" style="width:50%" ></a>
+        {% elif user.is_Epicier %}
+          <a href="{% url 'update-epicier' user.id %}"><center><input type="submit" value="Modifier" class="btn btn-outline-success" style="width:50%" ></a>
+        {% endif %}
+    </div>
+</div>
+    {% endif %}
+    {% endblock content %}

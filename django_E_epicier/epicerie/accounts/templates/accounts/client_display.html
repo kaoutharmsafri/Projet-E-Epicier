@@ -1,0 +1,41 @@
+{% extends 'main.html' %}
+{% block content %}
+{% include 'navbar-pages.html' %}
+{% load static %}
+{% if user.is_authenticated%}
+<h2 class="text-center">Mes Clients !</h2>
+<table class="table" width="600" border="2">
+    <thead class="table-dark">
+    <tr>
+        <th class="text-center">ID</th>
+        <th class="text-center">Username</th>
+        <th class="text-center">Prénom</th>
+        <th class="text-center">Nom</th>
+        <th class="text-center">Téléphone</th>
+        <th class="text-center">Addresse</th>
+        <th class="text-center">Epicerie</th>
+        <th class="text-center">Modifier</th>
+        <th class="text-center">Supprimer</th>
+
+    </tr>
+    </thead>
+    {% for element in client %}
+    <tr>        
+        <td class="text-center">{{element.user_id}}</td>
+        <td class="text-center">{{element.user.username}}</td>
+        <td class="text-center">{{element.user.first_name}}</td>
+        <td class="text-center">{{element.user.last_name}}</td>
+        <td class="text-center">{{element.phone_number}}</td>
+        <td class="text-center">{{element.adress}}</td>
+        <td class="text-center">{{element.epicerie.Nom_Epicerie}}</td>
+        <td class="text-center"><a href="{% url 'update-client' element.user_id %}"><i class="fa-solid fa-user-pen"></i></a></td>
+        <td class="text-center"><a href="{% url 'delete-client' element.user_id %}"><i class="fa-solid fa-user-minus"></i></a></td>
+    </tr>
+    {% endfor %}
+    
+    
+</table>
+{% else %}
+<center><u><b>you have to login !</b></u></center> 
+{% endif %}
+{% endblock content %}
