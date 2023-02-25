@@ -1,0 +1,97 @@
+{% load static %}
+
+<style>
+.nav-link:hover{
+  color: black;
+}
+.nav-link{
+  color: #64a19d;
+}
+.dropdown-menu {
+  background: linear-gradient(to bottom, rgba(100, 161, 157, 0.3) 0%, rgba(100, 161, 157, 0.7) 80%, #64a19d 100%);
+}
+.dropdown-item {
+  color:black;
+}
+.dropdown-item:hover, .dropdown-item:focus {
+  background-color: white;
+}
+</style>
+<nav class="navbar navbar-expand-lg bg-body-tertiary" id="nav">
+    <div class="container px-4 px-lg-5">
+        <a class="navbar-brand" href="{% url 'home' %}">E-Epicier</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            Menu
+            <i class="fas fa-bars"></i>
+        </button>
+        {% if user.is_authenticated%}
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ms-auto">
+                {% if perms.project.change_epicerie %}              
+                <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="ClientsDropdown" href="{% url 'client_display' %}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Clients
+                  </a>
+                  <ul class="dropdown-menu " aria-labelledby="ClientsDropdown">
+                    <li><a class="dropdown-item" href="{% url 'client_register' %}">créer un cllient</a></li>
+                    <li><a class="dropdown-item" href="{% url 'client_display' %}">voir mes clients</a></li>
+                  </ul>
+                </li>
+        
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="ClientsDropdown" href="{% url 'epicerie_display' %}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Epiceries
+                      </a>
+                      <ul class="dropdown-menu " aria-labelledby="ClientsDropdown">
+                        <li><a class="dropdown-item" href="{% url 'createepicerie' %}">créer une Epicerie</a></li>
+                        <li><a class="dropdown-item" href="{% url 'epicerie_display' %}">voir mes Epiceries</a></li>
+                      </ul>
+                    </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="ClientsDropdown" href="{% url 'produits_display' %}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Produits
+                      </a>
+                      <ul class="dropdown-menu " aria-labelledby="ClientsDropdown">
+                        <li><a class="dropdown-item" href="{% url 'createproduits' %}">créer un Produit</a></li>
+                        <li><a class="dropdown-item" href="{% url 'produits_display' %}">voir mes Produits</a></li>
+                      </ul>
+                    </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="ClientsDropdown" href="{% url 'credits_display' %}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Credits
+                      </a>
+                      <ul class="dropdown-menu " aria-labelledby="ClientsDropdown">
+                        <li><a class="dropdown-item" href="{% url 'createcredits' %}">créer un Credit</a></li>
+                        <li><a class="dropdown-item" href="{% url 'credits_display' %}">voir mes Credits</a></li>
+                      </ul>
+                    </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="ClientsDropdown" href="{% url 'Profile_display' user.username %}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Profile
+                      </a>
+                      <ul class="dropdown-menu " aria-labelledby="ClientsDropdown">
+                        <li><a class="dropdown-item" href="{% url 'Profile_display' user.username %}">mon profile</a></li>
+                      </ul>
+                    </li>                
+                    <li class="nav-item"><a class="nav-link" href="{% url 'logout_user' %}">Logout <i class="fa-solid fa-right-from-bracket"></i></a></li>
+
+                    {% else %}
+
+                <li class="nav-item"><a class="nav-link" href="{% url 'produits_display' %}">Produits</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'credits_display' %}">Credits</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'Profile_display' user.username %}">Profile</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'logout_user' %}">Logout <i class="fa-solid fa-right-from-bracket"></i></a></li>
+                {% endif %}
+              </ul>
+        </div>
+        {% else %}
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="{% url 'home' %}#about">A propos</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'login_user' %}">Log in</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'epicier_register' %}">Commencer</a></li>
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+</nav>

@@ -1,0 +1,147 @@
+<!--Hey! This is the original version
+of Simple CSS Waves-->
+{% load static %}
+<style>
+  
+  @import url(//fonts.googleapis.com/css?family=Lato:300:400);
+  #my-footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 0px;
+    text-align: center;
+  }
+  .flex { /*Flexbox for containers*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .waves {
+    position:relative;
+    width: 100%;
+    height:15vh;
+    margin-bottom:-7px; /*Fix for safari gap*/
+    min-height:100px;
+    max-height:150px;
+  }
+  
+  .content {
+    position:relative;
+    height:20vh;
+    text-align:center;
+    background-color: #ffffff;
+    color:white
+  }
+  
+  /* Animation */
+  
+  .parallax > use {
+    animation: move-forever 25s cubic-bezier(.55,.5,.45,.5)     infinite;
+  }
+  .parallax > use:nth-child(1) {
+    animation-delay: -2s;
+    animation-duration: 7s;
+  }
+  .parallax > use:nth-child(2) {
+    animation-delay: -3s;
+    animation-duration: 10s;
+  }
+  .parallax > use:nth-child(3) {
+    animation-delay: -4s;
+    animation-duration: 13s;
+  }
+  .parallax > use:nth-child(4) {
+    animation-delay: -5s;
+    animation-duration: 20s;
+  }
+  @keyframes move-forever {
+    0% {
+     transform: translate3d(-90px,0,0);
+    }
+    100% { 
+      transform: translate3d(85px,0,0);
+    }
+  }
+  /*Shrinking for mobile*/
+  @media (max-width: 768px) {
+    .waves {
+      height:40px;
+      min-height:40px;
+    }
+    .content {
+      height:30vh;
+    }
+    h1 {
+      font-size:24px;
+    }
+    .row {
+    display: flex;
+    justify-content: center;
+}
+
+    
+  }
+  
+  </style>
+<!-- Contact-->
+<section class="contact-section bg-black" id="Contact-Us">
+  <div class="container px-4 px-lg-5">
+      <div class="row justify-content-center align-items-center gx-5">
+          <div class="ol-md-4"style="width: 200px;height: 200px;">
+              <div class="card py-4 h-100">
+                  <div class="card-body text-center" >
+                      <img class="img-fluid" src="{% static 'assets/img/logo-fsjest.jpg' %}">
+                  </div>
+              </div>
+          </div>
+          <div class="ol-md-4" style="width: 200px;height: 200px;">
+              <div class="card py-4 h-100">
+                  <div class="card-body text-center" style=" display: flex;justify-content: center;">
+                      <img class="img-fluid" src="{% static 'assets/img/logodsef.png' %}">
+                  </div>
+              </div>
+          </div>
+          <div class="ol-md-4" style="width: 200px;height: 200px;">
+              <div class="card py-4 h-100">
+                  <div class="card-body text-center">
+                      <img class="img-fluid" src="{% static 'assets/img/logo-uae.png' %}">
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="social d-flex justify-content-center">
+          <a class="mx-2" href="https://www.figma.com/file/JIToIqEyxwW0C411oVxdD3/Untitled?node-id=0%3A1&t=qS6dFnoQiJ1VXcEC-1"><i class="fa-brands fa-figma"></i></a>
+          <a class="mx-2" href="https://github.com/kaoutharmsafri/Projet-E-Epicier.git"><i class="fab fa-github"></i></a>
+          <a class="mx-2" href="https://www.figma.com/file/8jQHjeKbmsNKpAuw1Lv5tC/Epicier-V1?node-id=0%3A1&t=HEH4wtWQS6RnJ8ec-1"><i class="fa-solid fa-object-group"></i></a>
+      </div>
+      
+  </div>
+</section>
+<!-- Footer-->
+    <footer style="height: auto; margin: 0%;" class="footer bg-black small text-center text-white-50">
+      <div class="container px-4 px-lg-5">
+        Copyright &copy; E-Epicier 2023</div>
+    </footer>
+    <!-- Bootstrap core JS-->
+   
+    <!--Waves Container-->
+    <div id="my-footer">
+    <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+    viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+    <defs>
+    <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+    </defs>
+    <g class="parallax">
+    <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255, 255, 255,0.7)" />
+    <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255, 255, 255,0.5)" />
+    <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255, 255, 255,0.3)" />
+    <use xlink:href="#gentle-wave" x="48" y="7" fill="#ffffff" />
+    </g>
+    </svg>
+    </div>
+    <!--Waves end-->
+    
+    
+    
