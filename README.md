@@ -3,6 +3,8 @@ Ce projet de fin de module correspond à une application web qui gère les créd
 
 pour que ce projet fonctionne vous devez suivre ces étapes:
 
+-créer une base de données sur phpmyadmin nommée : 'db_epicerie'
+
 -ouvrer la console des commandes :
 
 cd desktop
@@ -28,6 +30,12 @@ python manage.py startapp accounts
 python -m pip install mysql-connector-python
 
 pip install mysqlclient
+
+python manage.py makemigrations
+
+python manage.py migrate
+
+python manage.py runserver 
 
 python manage.py createsuperuser
 
